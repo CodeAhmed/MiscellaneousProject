@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GProvSample.Models.ObjectData>
+
+@using (Html.BeginForm())
+{
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+            @Html.Partial("_SideNavUserInfo")
+            <div class="cf nestable-lists">
+                <ul class="sidebar-menu">
+                    <li class="header">Object Hierarchy</li>
+                    @foreach (var items in Model)
+                    {
+                        <li>
+
+                            <a href="#"><i class="fa fa-life-saver"></i> <span>@Html.DisplayFor(m => items.ObjType)</span><i class="fa fa-angle-left pull-right"></i></a>
+                            @*@if (items.ObjTmpList.Count > 0)
+                                {*@
+                            <ul class="treeview-menu">
+                                @*@foreach (var subitems in items.ObjTmpList)
+                                    {*@
+                                <li>
+
+                                    <a href="#"><i class="fa fa-link"></i> @Html.DisplayFor(m => items.ObjSubType) <i class="fa fa-angle-left pull-right"></i></a>
+                                    <ul class="treeview-menu">
+                                        <li><a href="#"><i class="fa fa-circle-o"></i> @Html.DisplayFor(m => items.ObjName)</a></li>
+                                    </ul>
+
+                                </li>
+                                @*}*@
+                            </ul>
+                            @*}*@
+
+                        </li>
+                    }
+                </ul>
+            </div>
+        </section>
+    </aside>
+
+}
+

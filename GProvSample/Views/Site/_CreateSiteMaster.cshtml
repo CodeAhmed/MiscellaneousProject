@@ -1,0 +1,28 @@
+﻿@model GProvSample.Models.Site
+
+
+@using (Html.BeginForm("SaveSite", "Site", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Add Site Details</h3>
+        </div>
+        <div class="box-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SiteCode, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.SiteCode, new { @class = "form-control", @placeholder = "Site Code" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SiteName, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.SiteName, new { @class = "form-control", @placeholder = "Site Name" })
+                </div>
+            </div>
+        </div>
+        <div class="box-footer">
+            <button type="submit" class="btn btn-info pull-left">Create Site</button>
+        </div>
+    </div>
+}

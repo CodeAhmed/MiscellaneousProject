@@ -1,0 +1,83 @@
+﻿@using Microsoft.AspNet.Identity
+
+<header class="main-header">
+    <!-- Logo -->
+    <a href="@Url.Action("Index", "Home")" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b>G</b>Prv</span>
+
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">
+            <img src="~/Content/images/WCCB_Logo.png" class="img-circle" style="height:45px; width:auto; margin-top:-2px; margin-left:-6px" />
+            <b>G</b>Provisioning
+        </span>
+    </a>
+    
+    <nav class="navbar navbar-static-top">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+
+        <!-- View to pull the Site Name and upload Template to the Left-->
+        @*@Html.Partial("_TopNavItems")*@
+
+        <div class="navbar-custom-menu pull-left">
+            <ul class="nav navbar-nav">
+                <li class="active" id="sitename"><a> @HttpContext.Current.Session["sitename"]</a></li>
+                <li><a href="@Url.Action("Index","Site")"><i class="fa fa-globe" ></i> <span>  Site</span> </a></li>
+                <li>@Html.ActionLink("Upload", "Index", "Upload", null, new { @class = "navbar-custom-menu" })</li>
+                
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <li>@Html.ActionLink("RolesAdmin", "Index", "RolesAdmin")</li>
+                    <li>@Html.ActionLink("UsersAdmin", "Index", "UsersAdmin")</li>
+                    <li>@Html.ActionLink("SiteMaster", "SiteMaster", "Site")</li>
+                }
+            </ul>
+        </div>
+        
+        <!-- Site name and upload Template to left ended-->
+
+
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                @*@Html.Partial("_ChangeSite")*@
+                
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        @*<img src="~/Content/images/profile/@Url.Content(Model.Picture)" class="user-image" alt="User Image">*@
+                        <img src="~/Content/images/user.png" class="user-image" alt="User Image">
+                        <span class="hidden-xs">@HttpContext.Current.Session["UserName"]</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        
+                        <li class="user-header">
+                            @*<img src="~/Content/images/profile/@Url.Content(Model.Picture)" class="img-circle" alt="User Image">*@
+                            <img src="~/Content/images/user.png" class="img-circle" alt="User Image">
+                            <p>
+
+                                @User.Identity.GetUserName()
+                                @*<small>Member since Nov. 2012</small>*@
+                            </p>
+                        </li>
+
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="#" class="btn btn-default btn-flat">Profile</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="@Url.Action("LogOff", "Account")" class="btn btn-default btn-flat">Sign out</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                <!-- Control Sidebar Toggle Button -->
+                @*<li>
+                        <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                    </li>*@
+            </ul>
+        </div>
+    </nav>
+</header>

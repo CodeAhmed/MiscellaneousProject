@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - G Prov Sample</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/stylecss")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="hold-transition skin-green-light sidebar-mini">
+    <div class="wrapper">
+
+        @Html.Partial("_TopNavigation")
+
+        @Html.Partial("_SideNavigation")
+
+        @RenderBody()
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="http://wiproecoenergy.com">Wipro EcoEnergy</a>.</strong> All rights reserved.
+        </footer>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        <script src="~/Scripts/jquery.nestable.js"></script>
+        @RenderSection("scripts")
+    </div>
+</body>
+</html>

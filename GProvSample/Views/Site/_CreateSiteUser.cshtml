@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Edit Site";
+}
+
+<style>
+    .modal-content {
+        width: 600px !important;
+        margin: 30px auto !important;
+    }
+</style>
+
+@model GProvSample.Models.Site
+
+@using (Html.BeginForm("SaveSite", "Site", FormMethod.Post, new { @class = "form-horizontal" }))
+{
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Create Site</h4>
+    </div>
+
+    <div class="modal-body">
+        <div class="box-body">
+            <div class="form-group">
+                @Html.LabelFor(model => model.SiteCode, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.SiteCode, new { @class = "form-control", @placeholder = "Site Code" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SiteName, new { @class = "col-sm-2 control-label" })
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(model => model.SiteName, new { @class = "form-control", @placeholder = "Site Name" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cancel</button>
+        <button type="submit" id="approve-btn" class="btn btn-primary pull-right">Create</button>
+    </div>
+
+}
+
+@section scripts{
+    <script>
+        $(function () {
+            $('#approve-btn').click(function () {
+                $('#modal-container').modal('hide');
+            });
+        });
+    </script>
+}
+
+

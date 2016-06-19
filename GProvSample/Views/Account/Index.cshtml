@@ -1,0 +1,38 @@
+﻿@model IdentitySample.Models.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Account/_LoginLayout.cshtml";
+}
+
+@using (Html.BeginForm("Index", "Account", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <h1>Login Form</h1>
+    <div>
+        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @placeholder = "Username" })
+        @Html.ValidationMessageFor(model => model.Email)
+    </div>
+    <div>
+        @Html.PasswordFor(model => model.Password, new { @class = "form-control", @placeholder = "Password" })
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary ">Sign In</button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="separator">
+
+        <p class="change_link">
+            @*Forgot Password :
+                <a href="@Url.Action("ResetPassword","Login")" class="to_register"> Click to Reset </a>*@
+        <p><strong><a href="http://www.wipro.com">&copy; Wipro Limited</a>@DateTime.Now.Year</strong></p>
+
+        <div class="clearfix"></div>
+        <br />
+
+    </div>
+}
+
+

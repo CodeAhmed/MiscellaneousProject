@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Generic Provisioning Tool</title>
+    <link rel="shortcut icon" href="~/favicon.ico" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/stylecss")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body class="hold-transition skin-green-light sidebar-mini">
+    <div class="wrapper">
+
+        <header class="main-header">
+            <!-- Logo -->
+            <a href="@Url.Action("Index", "Home")" class="logo">
+                <!-- mini logo for sidebar mini 50x50 pixels -->
+                <span class="logo-mini"><b>G</b>Prv</span>
+
+                <!-- logo for regular state and mobile devices -->
+                <span class="logo-lg">
+                    <img src="~/Content/images/WCCB_Logo.png" class="img-circle" style="height:45px; width:auto; margin-top:-2px; margin-left:-6px" />
+                    <b>G</b>Provisioning
+                </span>
+            </a>
+
+            <nav class="navbar navbar-static-top">
+                <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+
+                <div class="navbar-custom-menu pull-left">
+                    <ul class="nav navbar-nav">
+                        <li><a href="@Url.Action("Index","Site")"><i class="fa fa-globe"></i> <span>  Site</span> </a></li>
+                        <li>@Html.ActionLink("Upload", "Index", "Upload", null, new { @class = "navbar-custom-menu" })</li>
+                    </ul>
+                </div>
+
+
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                @*<img src="~/Content/images/profile/@Url.Content(Model.Picture)" class="user-image" alt="User Image">*@
+                                <img src="~/Content/images/user.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs">@HttpContext.Current.Session["UserName"]</span>
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                <li class="user-header">
+                                    @*<img src="~/Content/images/profile/@Url.Content(Model.Picture)" class="img-circle" alt="User Image">*@
+                                    <img src="~/Content/images/user.png" class="img-circle" alt="User Image">
+                                    <p>
+                                        @HttpContext.Current.Session["UserName"]
+                                        @*<small>Member since Nov. 2012</small>*@
+                                    </p>
+                                </li>
+
+                                <li class="user-footer">
+                                    <div class="pull-left">
+                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                    </div>
+                                    <div class="pull-right">
+                                        <a href="@Url.Action("Logout","Account")" class="btn btn-default btn-flat">Sign out</a>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- Control Sidebar Toggle Button -->
+                        @*<li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>*@
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <aside class="main-sidebar">
+
+            <section class="sidebar">
+                <div class="user-panel">
+                    <div class="pull-left image">
+                        @*<img src="~/Content/images/profile/@Url.Content(Model.Picture)" class="img-circle" alt="User Image">*@
+                        <img src="~/Content/images/user.png" class="img-circle" alt="User Image">
+                    </div>
+                    <div class="pull-left info">
+                        <p>@HttpContext.Current.Session["UserName"]</p>
+                    </div>
+                </div>
+            </section>
+        </aside>
+
+        @RenderBody()
+        <footer class="main-footer">
+            <div class="pull-right hidden-xs">
+                <b>Version</b> 1.0.0
+            </div>
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="http://wiproecoenergy.com">Wipro EcoEnergy</a>.</strong> All rights reserved.
+        </footer>
+
+
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+        @RenderSection("scripts")
+    </div>
+
+    <div id="modal-container" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-content">
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(function () {
+            // Initialize numeric spinner input boxes
+            //$(".numeric-spinner").spinedit();
+
+            // Initalize modal dialog
+            // attach modal-container bootstrap attributes to links with .modal-link class.
+            // when a link is clicked with these attributes, bootstrap will display the href content in a modal dialog.
+            $('body').on('click', '.modal-link', function (e) {
+                e.preventDefault();
+                $(this).attr('data-target', '#modal-container');
+                $(this).attr('data-toggle', 'modal');
+            });
+
+            // Attach listener to .modal-close-btn's so that when the button is pressed the modal dialog disappears
+            $('body').on('click', '.modal-close-btn', function () {
+                $('#modal-container').modal('hide');
+            });
+
+            //clear modal cache, so that new content can be loaded
+            $('#modal-container').on('hidden.bs.modal', function () {
+                $(this).removeData('bs.modal');
+            });
+
+            $('#CancelModal').on('click', function () {
+                return false;
+            });
+        });
+    </script>
+
+</body>
+</html>

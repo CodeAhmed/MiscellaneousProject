@@ -1,0 +1,86 @@
+﻿@{
+    ViewBag.Title = "MenuIndex";
+}
+
+@model IEnumerable<GProvSample.Models.MenuTree>
+
+@using (Html.BeginForm())
+{
+
+    <aside class="main-sidebar">
+        <section class="sidebar">
+
+            <!-- Sidebar user Info panel -->
+            <div class="user-panel">
+                <div class="pull-left image">
+                    @*<img src="~/Content/images/profile/@Url.Content(Model.Picture)" class="img-circle" alt="User Image">*@
+                    <img src="~/Content/images/user.png" class="img-circle" alt="User Image">
+                </div>
+                <div class="pull-left info">
+                    <p>@HttpContext.Current.Session["UserName"]</p>
+                </div>
+            </div>
+
+            @*<div class="cf nestable-lists">*@
+            <ul class="sidebar-menu">
+                <li class="header">Object Hierarchy</li>
+                @foreach (var items in Model)
+                {
+                    <li>
+
+                        @Html.DisplayFor(m => items.ObjType)
+                        @*@if (items.children.Count > 0)
+                        {*@
+                            <ul>
+                                @*@foreach (var subitems in items.children)
+                                {*@
+                                    <li>
+
+                                        @Html.DisplayFor(m => items.ObjSubType)
+                                        <ul >
+                                            <li>@Html.DisplayFor(m => items.ObjName)
+                                        </ul>
+
+                                    </li>
+                                @*}*@
+                            </ul>
+                        @*}*@
+
+                    </li>
+                }
+            </ul>
+            @*</div>*@
+        </section>
+    </aside>
+
+    <div class="content-wrapper">
+        <section class="content-header">
+            <h1>
+                Dashboard
+                <small>Drag & drop Objects to create hierarchy</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="@Url.Action("Index")"><i class="fa fa-dashboard"></i> @ViewBag.Title</a></li>
+                <li class="active">Dashboard</li>
+            </ol>
+        </section>
+
+        <section class="content">
+            <div class="row">
+                <div class="col-md-12">
+                    @*<div class="cf nestable-lists">
+
+                        </div>*@
+                </div>
+            </div>
+        </section>
+    </div>
+
+}
+
+@section scripts {
+
+}
+
+
+
